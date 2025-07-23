@@ -15,8 +15,7 @@ def qa(question: str, answer: str) -> rx.Component:
             rx.text(answer, style=style.answer_style),
             text_align="left",
         ),
-        margin_y="1em",
-        width="100%",
+        margin_y="1em"
     )
 
 
