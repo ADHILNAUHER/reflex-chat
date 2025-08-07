@@ -6,16 +6,17 @@ from ai_chat.state import State
 
 
 def qa(question: str, answer: str) -> rx.Component:
-    return rx.box(
+    return rx.vstack(
         rx.box(
             rx.text(question, style=style.question_style),
-            text_align="right",
+            align_self="flex-end",  # 👈 Aligns right
         ),
         rx.box(
             rx.text(answer, style=style.answer_style),
-            text_align="left",
+            # align_self="flex-start",  # 👈 Aligns left
         ),
-        margin_y="1em"
+        width="69vw",
+        spacing='1' 
     )
 
 
@@ -38,7 +39,7 @@ def action_bar() -> rx.Component:
             style=style.input_style,
         ),
         rx.button(
-            "Ask",
+            rx.icon("send-horizontal"),
             on_click=State.answer,
             style=style.button_style,
         ),
@@ -46,14 +47,21 @@ def action_bar() -> rx.Component:
 
 
 def index() -> rx.Component:
-    return rx.center(
+    return rx.box(
         rx.vstack(
             chat(),
             action_bar(),
             align="center",
-        )
+            spacing="5",
+            # width="100vw",
+            # min_height="100vh",
+            padding="1em",
+        ),
+        width="100vw",
+        min_height="100vh",
+        bg="#121B1D",
     )
 
 
-app = rx.App()
+app = rx.App(theme=rx.theme(color_mode="dark", accent_color="mint"))
 app.add_page(index)
