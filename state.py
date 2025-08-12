@@ -21,7 +21,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-llm = OllamaLLM(model="llama3.2")
+llm = OllamaLLM(model="llama3.2", streaming=True)
 parser = StrOutputParser()
 chain = prompt | llm | parser
 
@@ -31,15 +31,14 @@ class State(rx.State):
 
     @rx.event
     async def answer(self):
-        answer = chain.invoke({"question": self.question})
-        self.chat_history.append((self.question, answer))
+        self.chat_history.append((self.question, ""))
+        question_copy = self.question
         self.question = ""
         yield
 
-        for i in range(len(answer)):
-            await asyncio.sleep(0.036)
+        async for chunk in chain.astream({"question": question_copy}):
             self.chat_history[-1] = (
                 self.chat_history[-1][0],
-                answer[: i+1]
+                self.chat_history[-1][1] + chunk
             )
             yield
