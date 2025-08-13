@@ -12,7 +12,7 @@ def qa(question: str, answer: str) -> rx.Component:
             align_self="flex-end",  # 👈 Aligns right
         ),
         rx.box(
-            rx.text(answer, style=style.answer_style),
+            rx.markdown(answer, style=style.answer_style, highlight=True),
             # align_self="flex-start",  # 👈 Aligns left
         ),
         width="69vw",
