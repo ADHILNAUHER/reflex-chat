@@ -6,7 +6,6 @@ import os
 import asyncio
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_ollama.llms import OllamaLLM
 from dotenv import load_dotenv
 
 load_dotenv()
