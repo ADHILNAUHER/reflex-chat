@@ -34,7 +34,7 @@ def chat_scroll_area() -> rx.Component:
         id="chat-scroll",
         # height="100vh",
         padding="1rem",
-        padding_bottom="3.7rem",   # reserve space for the fixed action bar
+        padding_bottom="2.7rem",   # reserve space for the fixed action bar
         overflow_y="auto",
         # width="100%",
         overflow_x="hidden",     # prevent horizontal overflow
@@ -64,7 +64,7 @@ def action_bar() -> rx.Component:
         left="0",
         right="0",
         width="100%",
-        padding="0.4rem",
+        padding="0.51rem",
         # padding_bottom="0.3rem",
         bg="#121B1D",
         border_top="0px solid #233136",
@@ -75,6 +75,13 @@ def action_bar() -> rx.Component:
 def index() -> rx.Component:
     return rx.box(
         rx.vstack(
+            rx.button(
+                rx.icon("trash-2"),
+                on_click=State.clear_chat,
+                style=style.button_style,
+                align_self="flex-end",
+                position="fixed"
+            ),
             chat_scroll_area(),
             action_bar(),
             align="center",
@@ -83,7 +90,7 @@ def index() -> rx.Component:
             # min_height="100vh",
             padding="1em",
         ),
-        width="100vw",
+        width="100%",
         min_height="100vh",
         bg="#121B1D",
     )

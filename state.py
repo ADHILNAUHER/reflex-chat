@@ -57,3 +57,7 @@ class State(rx.State):
             response_text += fragment
             self.chat_history[-1] = (question_copy, response_text)
             yield
+
+    @rx.event
+    def clear_chat(self):
+        self.chat_history = []

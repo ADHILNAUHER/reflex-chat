@@ -14,8 +14,8 @@ message_style = dict(
 # Set specific styles for questions and answers.
 question_style = message_style | dict(
     # margin_right=chat_margin,
-    background_color="#1F2E30",
-    max_width="39em",
+    background_color="#1B282A",
+    max_width="32em",
 )
 answer_style = message_style | dict(
     # margin_right=chat_margin,
